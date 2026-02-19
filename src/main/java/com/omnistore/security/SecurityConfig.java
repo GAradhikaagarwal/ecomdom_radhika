@@ -36,6 +36,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/reviews/**").permitAll()
+                .requestMatchers("/api/payment/stripe/webhook").permitAll() // Allow unauthenticated access to webhook
                 .requestMatchers("/api/orders/**").authenticated()
                 .requestMatchers("/api/cart/**").authenticated()
                 .requestMatchers("/api/addresses/**").authenticated()

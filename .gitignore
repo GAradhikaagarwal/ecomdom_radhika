@@ -55,3 +55,6 @@ application-prod.properties
 secrets/
 *.pem
 *.jks
+
+# Frontend
+frontend/

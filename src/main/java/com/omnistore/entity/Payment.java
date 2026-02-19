@@ -14,8 +14,11 @@ public class Payment {
     private Long orderId;
     private Double amount;
 
-    private String status;   // INITIATED, SUCCESS, FAILED
-    private String provider; // MOCK_GATEWAY
+    private String status;   // INITIATED, SUCCESS, FAILED, REQUIRES_ACTION
+    private String provider; // MOCK_GATEWAY, STRIPE
+
+    private String stripePaymentIntentId; // Stores the Stripe PaymentIntent ID
+    private String stripeClientSecret;    // Stores the client secret for frontend confirmation
 
     private LocalDateTime createdAt;
 
@@ -26,6 +29,8 @@ public class Payment {
     public String getStatus() { return status; }
     public String getProvider() { return provider; }
     public LocalDateTime getCreatedAt() { return createdAt; }
+    public String getStripePaymentIntentId() { return stripePaymentIntentId; }
+    public String getStripeClientSecret() { return stripeClientSecret; }
 
     public void setId(Long id) { this.id = id; }
     public void setOrderId(Long orderId) { this.orderId = orderId; }
@@ -33,4 +38,6 @@ public class Payment {
     public void setStatus(String status) { this.status = status; }
     public void setProvider(String provider) { this.provider = provider; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public void setStripePaymentIntentId(String stripePaymentIntentId) { this.stripePaymentIntentId = stripePaymentIntentId; }
+    public void setStripeClientSecret(String stripeClientSecret) { this.stripeClientSecret = stripeClientSecret; }
 }
