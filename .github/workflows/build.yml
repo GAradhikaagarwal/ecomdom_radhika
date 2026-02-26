@@ -19,6 +19,12 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
+    - name: List workspace
+      run: ls -R
+
+    - name: Ensure mvnw is executable
+      run: chmod +x mvnw || true
+
     - name: Set up JDK 21
       uses: actions/setup-java@v4
       with:
@@ -29,10 +35,16 @@ jobs:
     - name: Build with Maven
       run: ./mvnw clean package -DskipTests
 
+    - name: Show target contents
+      run: ls -la target || true
+
     - name: Set up Node.js (for Snyk CLI)
       uses: actions/setup-node@v4
       with:
         node-version: '18'
+
+    - name: Check Node/NPM
+      run: node --version && npm --version
 
     - name: Install Snyk CLI
       run: npm install -g snyk
@@ -44,6 +56,7 @@ jobs:
       run: snyk test --file=pom.xml
 
     - name: Upload JAR
+      if: success() || failure()
       uses: actions/upload-artifact@v4
       with:
         name: demo-jar

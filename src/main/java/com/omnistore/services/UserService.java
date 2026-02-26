@@ -1,10 +1,5 @@
 package com.omnistore.services;
 
-import com.omnistore.entity.Role;
-import com.omnistore.entity.User;
-import com.omnistore.exception.BadRequestException;
-import com.omnistore.exception.ResourceNotFoundException;
-import com.omnistore.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,7 +7,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import com.omnistore.entity.Role;
+import com.omnistore.entity.User;
+import com.omnistore.exception.BadRequestException;
+import com.omnistore.exception.ResourceNotFoundException;
+import com.omnistore.repository.UserRepository;
+
 
 @Service
 public class UserService implements UserDetailsService {

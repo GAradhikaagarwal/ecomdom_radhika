@@ -1,12 +1,17 @@
 # Multi-stage Dockerfile for building and running the Spring Boot application
 
 ### Build stage
-FROM maven:3.10.1-eclipse-temurin-21 AS build
+FROM eclipse-temurin:21-jdk AS build
 WORKDIR /workspace
 
 # Copy project files and perform a Maven package (skip tests for faster builds)
 COPY . /workspace
-RUN mvn -B -DskipTests package
+# Build the project and then remove any .properties files from the produced JAR(s)
+RUN chmod +x ./mvnw || true \
+	&& ./mvnw -B -DskipTests package \
+	&& apt-get update && apt-get install -y zip >/dev/null \
+	&& for f in target/*.jar; do zip -d "$f" '*.properties' || true; done \
+	&& rm -f target/classes/*.properties || true
 
 ### Run stage
 FROM eclipse-temurin:21-jre

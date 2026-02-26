@@ -1,5 +1,5 @@
-target
-.mvn
+.git
+.github
 .git
 .github
 node_modules
@@ -12,13 +12,10 @@ logs
 .DS_Store
 .env
 .env.local
-mvnw
-mvnw.cmd
 .classpath
 .project
 .settings
-Dockerfile
-.dockerignore
+
 
 # Exclude properties files (may contain secrets)
 *.properties

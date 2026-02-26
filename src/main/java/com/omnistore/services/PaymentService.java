@@ -1,8 +1,14 @@
 package com.omnistore.services;
 
+import java.time.LocalDateTime;
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.omnistore.entity.Order;
 import com.omnistore.entity.Payment;
-import com.omnistore.exception.BadRequestException;
 import com.omnistore.exception.ResourceNotFoundException;
 import com.omnistore.repository.OrderRepository;
 import com.omnistore.repository.PaymentRepository;
@@ -10,12 +16,6 @@ import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
-import java.util.Random;
 
 @Service
 public class PaymentService {
