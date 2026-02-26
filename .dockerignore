@@ -19,3 +19,7 @@ mvnw.cmd
 .settings
 Dockerfile
 .dockerignore
+
+# Exclude properties files (may contain secrets)
+*.properties
+
